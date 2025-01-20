@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elsafa Bakery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #00aaff, #0044cc, #0099cc, #0066ff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .logo img {
+            max-width: 300px;
+            transition: transform 0.5s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        .icons {
+            margin-top: 20px;
+        }
+
+        .icon {
+            margin: 10px;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .icon img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .icon img:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="uploaded-file-path" alt="Elsafa Bakery Logo">
+    </div>
+
+    <div class="icons">
+        <!-- Facebook Icon -->
+        <a class="icon" href="https://www.facebook.com/share/1WX9wSSdQd/" target="_blank">
+            <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook">
+        </a>
+
+        <!-- Menu Icon -->
+        <a class="icon" href="https://drive.google.com/file/d/1Z3HyALI6liZRJTCTgdjx7bZuL2U9qT2b/view?usp=drivesdk" target="_blank">
+            <img src="https://img.icons8.com/ios-filled/50/menu.png" alt="Menu">
+        </a>
+
+        <!-- WhatsApp Icon -->
+        <a class="icon" href="https://wa.me/201284698710" target="_blank">
+            <img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp">
+        </a>
+    </div>
+</body>
+</html>
