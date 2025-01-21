@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - مخبوزات الصفا</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff8c00;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .btn-submit {
+            background-color: #ff8c00;
+            color: #fff;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff6f00;
+        }
+
+        .country-code {
+            width: 20%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .phone-number {
+            width: 75%;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .select-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .select-container select {
+            flex-grow: 1;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #ff8c00;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>تسجيل الدخول</h1>
+        <form id="registrationForm">
+            <!-- Name Fields -->
+            <div class="form-section">
+                <label for="firstName">الاسم الأول</label>
+                <input type="text" id="firstName" name="firstName" placeholder="أدخل الاسم الأول" required>
+
+                <label for="middleName">الاسم الأوسط</label>
+                <input type="text" id="middleName" name="middleName" placeholder="أدخل الاسم الأوسط" required>
+
+                <label for="lastName">الاسم الأخير</label>
+                <input type="text" id="lastName" name="lastName" placeholder="أدخل الاسم الأخير" required>
+
+                <label for="fourthName">الاسم الرابع</label>
+                <input type="text" id="fourthName" name="fourthName" placeholder="أدخل الاسم الرابع" required>
+            </div>
+
+            <!-- Phone Number Field -->
+            <div class="form-section select-container">
+                <label for="phoneNumber">رقم الهاتف</label>
+                <div>
+                    <select class="country-code" id="countryCode">
+                        <!-- Add country codes here -->
+                        <option value="+1">+1 (USA)</option>
+                        <option value="+20">+20 (Egypt)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+91">+91 (India)</option>
+                    </select>
+                    <input type="text" class="phone-number" id="phoneNumber" name="phoneNumber" placeholder="أدخل رقم الهاتف" required>
+                </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-section">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+            </div>
+
+            <!-- Password & Confirm Password -->
+            <div class="form-section">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+
+                <label for="confirmPassword">تأكيد كلمة المرور</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="أعد إدخال كلمة المرور" required>
+            </div>
+
+            <!-- Address Field -->
+            <div class="form-section">
+                <label for="address">العنوان</label>
+                <input type="text" id="address" name="address" placeholder="أدخل عنوانك" required>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-section">
+                <label for="dob">تاريخ الميلاد</label>
+                <select id="dob" name="dob" required>
+                    <option value="">اختر الشهر</option>
+                    <option value="January">يناير</option>
+                    <option value="February">فبراير</option>
+                    <option value="March">مارس</option>
+                    <option value="April">أبريل</option>
+                    <option value="May">مايو</option>
+                    <option value="June">يونيو</option>
+                    <option value="July">يوليو</option>
+                    <option value="August">أغسطس</option>
+                    <option value="September">سبتمبر</option>
+                    <option value="October">أكتوبر</option>
+                    <option value="November">نوفمبر</option>
+                    <option value="December">ديسمبر</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">إرسال</button>
+            <div class="error" id="errorMessage"></div>
+        </form>
+
+        <a href="third.html" class="login-link">تسجيل الدخول</a>
+        <p class="login-link" onclick="window.location.href='fourth.html';">لديك حساب؟</p>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let firstName = document.getElementById('firstName').value;
+            let middleName = document.getElementById('middleName').value;
+            let lastName = document.getElementById('lastName').value;
+            let fourthName = document.getElementById('fourthName').value;
+            let phoneNumber = document.getElementById('phoneNumber').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+            let address = document.getElementById('address').value;
+            let dob = document.getElementById('dob').value;
+
+            if (!firstName || !middleName || !lastName || !fourthName || !phoneNumber || !email || !password || !confirmPassword || !address || !dob) {
+                document.getElementById('errorMessage').textContent = "من فضلك قم بملء جميع البيانات!";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('errorMessage').textContent = "كلمة المرور غير متطابقة!";
+                return;
+            }
+
+            alert('تم التسجيل بنجاح!');
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
+
+</body>
+</html>
