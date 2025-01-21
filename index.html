@@ -19,7 +19,6 @@
             overflow: hidden;
         }
 
-        /* Moving background with stars or other effects */
         .background {
             position: absolute;
             top: 0;
@@ -87,6 +86,29 @@
             padding: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Style for login button with icon */
+        .login-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ff8c00;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .login-btn img {
+            margin-right: 10px;
+        }
+
+        .login-btn:hover {
+            background-color: #ff6f00;
+        }
     </style>
 </head>
 <body>
@@ -111,6 +133,14 @@
         <!-- WhatsApp Icon -->
         <a class="icon" href="https://wa.me/201284698710" target="_blank">
             <img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp">
+        </a>
+    </div>
+
+    <!-- تسجيل الدخول مع أيقونة -->
+    <div class="login">
+        <a href="second.html" class="login-btn">
+            <img src="https://img.icons8.com/ios-filled/50/000000/login-rounded-right.png" alt="Login Icon" />
+            <span>تسجيل الدخول</span>
         </a>
     </div>
 </body>
