@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background: linear-gradient(45deg, #ff7e5f, #feb47b, #00c6ff, #0072ff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,8 +17,14 @@
             margin: 0;
         }
 
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .form-container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             padding: 30px;
@@ -27,6 +35,8 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 30px;
+            color: #333;
         }
 
         label {
@@ -51,10 +61,11 @@
             font-size: 14px;
             text-align: center;
             margin-bottom: 10px;
+            font-family: 'Times New Roman', serif;
         }
 
         .btn-submit {
-            background-color: #ccc;
+            background-color: #0072ff;
             color: #fff;
             padding: 15px;
             width: 100%;
@@ -66,7 +77,7 @@
         }
 
         .btn-submit:hover {
-            background-color: #bbb;
+            background-color: #005bb5;
         }
 
         .country-code {
@@ -99,6 +110,18 @@
             text-align: center;
             margin-top: 20px;
             cursor: pointer;
+            color: #0072ff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        .link-container {
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -204,12 +227,14 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn-submit">إرسال</button>
+            <button type="submit" class="btn-submit">تسجيل الآن</button>
             <div class="error" id="errorMessage"></div>
         </form>
 
-        <a href="third.html" class="login-link">تسجيل الدخول</a>
-        <p class="login-link" onclick="window.location.href='fourth.html';">لديك حساب؟</p>
+        <div class="link-container">
+            <a href="third.html" class="login-link">لديك حساب؟</a>
+            <p class="login-link" onclick="window.location.href='fourth.html';">تسجيل الدخول</p>
+        </div>
     </div>
 
     <script>
@@ -230,7 +255,7 @@
             let dobYear = document.getElementById('dobYear').value;
 
             if (!firstName || !middleName || !lastName || !fourthName || !phoneNumber || !email || !password || !confirmPassword || !address || !dobDay || !dobMonth || !dobYear) {
-                document.getElementById('errorMessage').textContent = "من فضلك قم بملء جميع البيانات!";
+                document.getElementById('errorMessage').textContent = "يرجى ملء جميع الحقول!";
                 return;
             }
 
@@ -245,4 +270,4 @@
     </script>
 
 </body>
-</html>
+</html>               
