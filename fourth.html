@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المنتجات</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(to bottom right, #ff9a76, #ffc371);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 80%;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .plus-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #007bff;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .plus-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .form-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .form-container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container label {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .form-container input, .form-container textarea, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-container .btn {
+            background-color: #ff6f61;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .form-container .btn:hover {
+            background-color: #ff3d3d;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #555;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+        }
+
+        .sparkle:nth-child(1) { left: 20%; top: 10%; animation-delay: 0.5s; }
+        .sparkle:nth-child(2) { left: 40%; top: 20%; animation-delay: 1s; }
+        .sparkle:nth-child(3) { left: 60%; top: 15%; animation-delay: 1.5s; }
+        .sparkle:nth-child(4) { left: 80%; top: 25%; animation-delay: 2s; }
+        .sparkle:nth-child(5) { left: 50%; top: 50%; animation-delay: 2.5s; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>مرحبا بك يا صانع الموقع</h1>
+        <div class="plus-btn" onclick="openForm()">+</div>
+    </div>
+
+    <!-- Form Popup -->
+    <div class="form-popup" id="formPopup">
+        <div class="form-container">
+            <button class="close-btn" onclick="closeForm()">×</button>
+            <h2>إضافة منتج جديد</h2>
+            <label for="image">إضافة صورة:</label>
+            <input type="file" id="image" accept="image/*">
+            <label for="title">عنوان المنتج:</label>
+            <input type="text" id="title" placeholder="أدخل عنوان المنتج">
+            <label for="description">وصف المنتج (اختياري):</label>
+            <textarea id="description" placeholder="أدخل وصف المنتج"></textarea>
+            <label for="price">السعر:</label>
+            <input type="number" id="price" placeholder="أدخل سعر المنتج">
+            <label for="currency">اختر العملة:</label>
+            <select id="currency">
+                <option>جنيه مصري</option>
+                <option>دولار أمريكي</option>
+                <option>ريال سعودي</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <label for="category">الفئة:</label>
+            <select id="category">
+                <option>مخبوزات</option>
+                <option>أكلات بيتي</option>
+            </select>
+            <button class="btn" onclick="addProduct()">إرسال</button>
+        </div>
+    </div>
+
+    <!-- Sparkles for magic effect -->
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+
+    <script>
+        function openForm() {
+            document.getElementById('formPopup').style.display = 'flex';
+        }
+
+        function closeForm() {
+            document.getElementById('formPopup').style.display = 'none';
+        }
+
+        function addProduct() {
+            alert("تم إضافة المنتج بنجاح!");
+            closeForm();
+        }
+    </script>
+
+</body>
+</html>
