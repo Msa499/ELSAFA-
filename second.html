@@ -26,7 +26,6 @@
 
         h1 {
             text-align: center;
-            color: #ff8c00;
             margin-bottom: 20px;
         }
 
@@ -55,7 +54,7 @@
         }
 
         .btn-submit {
-            background-color: #ff8c00;
+            background-color: #ccc;
             color: #fff;
             padding: 15px;
             width: 100%;
@@ -67,7 +66,7 @@
         }
 
         .btn-submit:hover {
-            background-color: #ff6f00;
+            background-color: #bbb;
         }
 
         .country-code {
@@ -99,7 +98,6 @@
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #ff8c00;
             cursor: pointer;
         }
     </style>
@@ -129,7 +127,6 @@
                 <label for="phoneNumber">رقم الهاتف</label>
                 <div>
                     <select class="country-code" id="countryCode">
-                        <!-- Add country codes here -->
                         <option value="+1">+1 (USA)</option>
                         <option value="+20">+20 (Egypt)</option>
                         <option value="+44">+44 (UK)</option>
@@ -163,21 +160,47 @@
             <!-- Date of Birth -->
             <div class="form-section">
                 <label for="dob">تاريخ الميلاد</label>
-                <select id="dob" name="dob" required>
-                    <option value="">اختر الشهر</option>
-                    <option value="January">يناير</option>
-                    <option value="February">فبراير</option>
-                    <option value="March">مارس</option>
-                    <option value="April">أبريل</option>
-                    <option value="May">مايو</option>
-                    <option value="June">يونيو</option>
-                    <option value="July">يوليو</option>
-                    <option value="August">أغسطس</option>
-                    <option value="September">سبتمبر</option>
-                    <option value="October">أكتوبر</option>
-                    <option value="November">نوفمبر</option>
-                    <option value="December">ديسمبر</option>
-                </select>
+                <div class="select-container">
+                    <select id="dobDay" name="dobDay" required>
+                        <option value="">اليوم</option>
+                        <!-- Add days 1 to 31 -->
+                        <script>
+                            for (let i = 1; i <= 31; i++) {
+                                let option = document.createElement('option');
+                                option.value = i;
+                                option.textContent = i;
+                                document.getElementById('dobDay').appendChild(option);
+                            }
+                        </script>
+                    </select>
+                    <select id="dobMonth" name="dobMonth" required>
+                        <option value="">الشهر</option>
+                        <option value="January">يناير</option>
+                        <option value="February">فبراير</option>
+                        <option value="March">مارس</option>
+                        <option value="April">أبريل</option>
+                        <option value="May">مايو</option>
+                        <option value="June">يونيو</option>
+                        <option value="July">يوليو</option>
+                        <option value="August">أغسطس</option>
+                        <option value="September">سبتمبر</option>
+                        <option value="October">أكتوبر</option>
+                        <option value="November">نوفمبر</option>
+                        <option value="December">ديسمبر</option>
+                    </select>
+                    <select id="dobYear" name="dobYear" required>
+                        <option value="">السنة</option>
+                        <!-- Add years dynamically -->
+                        <script>
+                            for (let i = 1950; i <= new Date().getFullYear(); i++) {
+                                let option = document.createElement('option');
+                                option.value = i;
+                                option.textContent = i;
+                                document.getElementById('dobYear').appendChild(option);
+                            }
+                        </script>
+                    </select>
+                </div>
             </div>
 
             <!-- Submit Button -->
@@ -202,9 +225,11 @@
             let password = document.getElementById('password').value;
             let confirmPassword = document.getElementById('confirmPassword').value;
             let address = document.getElementById('address').value;
-            let dob = document.getElementById('dob').value;
+            let dobDay = document.getElementById('dobDay').value;
+            let dobMonth = document.getElementById('dobMonth').value;
+            let dobYear = document.getElementById('dobYear').value;
 
-            if (!firstName || !middleName || !lastName || !fourthName || !phoneNumber || !email || !password || !confirmPassword || !address || !dob) {
+            if (!firstName || !middleName || !lastName || !fourthName || !phoneNumber || !email || !password || !confirmPassword || !address || !dobDay || !dobMonth || !dobYear) {
                 document.getElementById('errorMessage').textContent = "من فضلك قم بملء جميع البيانات!";
                 return;
             }
