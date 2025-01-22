@@ -112,19 +112,26 @@
   </div>
 
   <script>
-    // التحقق من حساب المستخدم
+    // بيانات الحساب المصرح له
     const userEmail = "frahone5@gmail.com";
     const userPassword = "123456789003m";
 
+    // التحقق من بيانات المستخدم
     function verifyAccount(email, password) {
       return email === userEmail && password === userPassword;
     }
 
+    // عرض زر Plus عند تسجيل الدخول الصحيح
     function displayPlus() {
+      // استرداد بيانات تسجيل الدخول من التخزين
       const email = sessionStorage.getItem('email');
       const password = sessionStorage.getItem('password');
+
+      // التحقق من البيانات
       if (verifyAccount(email, password)) {
         document.getElementById('plus-container').style.display = 'block';
+      } else {
+        console.log("لا يمكنك الوصول إلى زر Plus بدون تسجيل الدخول الصحيح.");
       }
     }
 
@@ -139,7 +146,7 @@
       }
     }
 
-    // استدعاء عرض زر الإضافة عند التحميل
+    // استدعاء عرض زر Plus عند تحميل الصفحة
     window.onload = displayPlus;
   </script>
 </body>
