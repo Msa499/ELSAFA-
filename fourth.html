@@ -10,9 +10,6 @@
       margin: 0;
       padding: 0;
       background-color: #ffffff;
-      background-image: radial-gradient(circle at top left, #add8e6 10%, transparent 30%), 
-                        radial-gradient(circle at bottom right, #add8e6 10%, transparent 30%);
-      background-size: cover;
     }
 
     header {
@@ -20,7 +17,7 @@
       padding: 20px;
       color: #333;
       background-color: #f5f5f5;
-      border-bottom: 2px solid #add8e6;
+      border-bottom: 2px solid #ffd700;
     }
 
     .container {
@@ -35,7 +32,7 @@
       width: 300px;
       padding: 20px;
       text-align: center;
-      background: linear-gradient(135deg, #fff8dc, #ffeb70);
+      background-color: #ffeb70;
       border: 1px solid #ffd700;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -66,15 +63,32 @@
       background-color: #ffcc33;
     }
 
+    .footer {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      background-color: #f5f5f5;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      gap: 20px;
+    }
+
+    .footer a {
+      color: #333;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
     .plus-container {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      top: 20px;
+      left: 20px;
     }
 
     .plus-container button {
-      background-color: #333;
-      color: #ff477e;
+      background-color: #ffd700;
+      color: white;
       font-size: 30px;
       border: none;
       border-radius: 50%;
@@ -82,72 +96,53 @@
       height: 60px;
       cursor: pointer;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: 0.3s;
     }
 
     .plus-container button:hover {
-      background-color: #555;
+      background-color: #ffcc33;
     }
+
   </style>
 </head>
 <body>
+
   <header>
     <h1>مرحبًا بك في صفحتنا الرئيسية</h1>
   </header>
 
   <div class="container">
     <div class="section">
-      <h2>المخبوزات</h2>
-      <button onclick="navigate('bakery')">عرض المنتجات</button>
-    </div>
-
-    <div class="section">
       <h2>الأكلات البيتية</h2>
       <button onclick="navigate('homeFood')">عرض المنتجات</button>
     </div>
+
+    <div class="section">
+      <h2>المخبوزات</h2>
+      <button onclick="navigate('bakery')">عرض المنتجات</button>
+    </div>
   </div>
 
-  <div class="plus-container" id="plus-container" style="display: none;">
+  <!-- شريط أسفل الصفحة -->
+  <div class="footer">
+    <a href="sixth.html">ملف الشخصي</a>
+    <a href="seventh.html">عربة المشتريات</a>
+    <a href="eighth.html">قسم المنتديات</a>
+  </div>
+
+  <!-- زر Plus -->
+  <div class="plus-container">
     <button onclick="window.location.href='fifth.html'">+</button>
   </div>
 
   <script>
-    // بيانات الحساب المصرح له
-    const userEmail = "frahone5@gmail.com";
-    const userPassword = "123456789003m";
-
-    // التحقق من بيانات المستخدم
-    function verifyAccount(email, password) {
-      return email === userEmail && password === userPassword;
-    }
-
-    // عرض زر Plus عند تسجيل الدخول الصحيح
-    function displayPlus() {
-      // استرداد بيانات تسجيل الدخول من التخزين
-      const email = sessionStorage.getItem('email');
-      const password = sessionStorage.getItem('password');
-
-      // التحقق من البيانات
-      if (verifyAccount(email, password)) {
-        document.getElementById('plus-container').style.display = 'block';
-      } else {
-        console.log("لا يمكنك الوصول إلى زر Plus بدون تسجيل الدخول الصحيح.");
-      }
-    }
-
-    // التنقل بين الأقسام
     function navigate(section) {
-      if (section === 'bakery') {
-        alert('انتقل إلى قسم المخبوزات');
-        // تنفيذ الكود لعرض المخبوزات
-      } else if (section === 'homeFood') {
-        alert('انتقل إلى قسم الأكلات البيتية');
-        // تنفيذ الكود لعرض الأكلات البيتية
+      if (section === 'homeFood') {
+        alert('عرض منتجات الأكلات البيتية');
+      } else if (section === 'bakery') {
+        alert('عرض منتجات المخبوزات');
       }
     }
-
-    // استدعاء عرض زر Plus عند تحميل الصفحة
-    window.onload = displayPlus;
   </script>
+
 </body>
 </html>
