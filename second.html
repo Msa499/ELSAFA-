@@ -50,14 +50,6 @@
             background-color: #fff;
         }
 
-        .error {
-            color: #ff0000;
-            font-size: 14px;
-            text-align: center;
-            margin-bottom: 10px;
-            font-family: 'Times New Roman', serif;
-        }
-
         .btn-submit {
             background-color: #0072ff;
             color: #fff;
@@ -74,34 +66,29 @@
             background-color: #005bb5;
         }
 
-        .country-code {
-            width: 20%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .phone-number {
-            width: 75%;
-        }
-
-        .form-section {
-            margin-bottom: 20px;
-        }
-
-        .select-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .select-container select {
-            flex-grow: 1;
-        }
-
         .link-container {
             text-align: center;
             margin-top: 20px;
+        }
+
+        .link-container a {
+            color: #0072ff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .link-container a:hover {
+            color: #005bb5;
+            text-decoration: underline;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', serif;
         }
     </style>
 </head>
@@ -126,17 +113,9 @@
             </div>
 
             <!-- Phone Number Field -->
-            <div class="form-section select-container">
+            <div class="form-section">
                 <label for="phoneNumber">رقم الهاتف</label>
-                <div>
-                    <select class="country-code" id="countryCode">
-                        <option value="+1">+1 (USA)</option>
-                        <option value="+20">+20 (Egypt)</option>
-                        <option value="+44">+44 (UK)</option>
-                        <option value="+91">+91 (India)</option>
-                    </select>
-                    <input type="text" class="phone-number" id="phoneNumber" name="phoneNumber" placeholder="أدخل رقم الهاتف" required>
-                </div>
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="أدخل رقم الهاتف" required>
             </div>
 
             <!-- Email Field -->
@@ -154,52 +133,43 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="أعد إدخال كلمة المرور" required>
             </div>
 
-            <!-- Address Field -->
-            <div class="form-section">
-                <label for="address">العنوان</label>
-                <input type="text" id="address" name="address" placeholder="أدخل عنوانك" required>
-            </div>
-
             <!-- Date of Birth -->
             <div class="form-section">
                 <label for="dob">تاريخ الميلاد</label>
-                <div class="select-container">
-                    <select id="dobDay" name="dobDay" required>
-                        <option value="">اليوم</option>
-                        <!-- Add days 1 to 31 -->
+                <div style="display: flex; gap: 10px;">
+                    <select id="day" name="day" required>
+                        <option value="" disabled selected>اليوم</option>
+                        <!-- Add days dynamically -->
                         <script>
                             for (let i = 1; i <= 31; i++) {
-                                let option = document.createElement('option');
-                                option.value = i;
-                                option.textContent = i;
-                                document.getElementById('dobDay').appendChild(option);
+                                document.write(`<option value="${i}">${i}</option>`);
                             }
                         </script>
                     </select>
-                    <select id="dobMonth" name="dobMonth" required>
-                        <option value="">الشهر</option>
-                        <option value="January">يناير</option>
-                        <option value="February">فبراير</option>
-                        <option value="March">مارس</option>
-                        <option value="April">أبريل</option>
-                        <option value="May">مايو</option>
-                        <option value="June">يونيو</option>
-                        <option value="July">يوليو</option>
-                        <option value="August">أغسطس</option>
-                        <option value="September">سبتمبر</option>
-                        <option value="October">أكتوبر</option>
-                        <option value="November">نوفمبر</option>
-                        <option value="December">ديسمبر</option>
+
+                    <select id="month" name="month" required>
+                        <option value="" disabled selected>الشهر</option>
+                        <option value="يناير">يناير</option>
+                        <option value="فبراير">فبراير</option>
+                        <option value="مارس">مارس</option>
+                        <option value="أبريل">أبريل</option>
+                        <option value="مايو">مايو</option>
+                        <option value="يونيو">يونيو</option>
+                        <option value="يوليو">يوليو</option>
+                        <option value="أغسطس">أغسطس</option>
+                        <option value="سبتمبر">سبتمبر</option>
+                        <option value="أكتوبر">أكتوبر</option>
+                        <option value="نوفمبر">نوفمبر</option>
+                        <option value="ديسمبر">ديسمبر</option>
                     </select>
-                    <select id="dobYear" name="dobYear" required>
-                        <option value="">السنة</option>
+
+                    <select id="year" name="year" required>
+                        <option value="" disabled selected>السنة</option>
                         <!-- Add years dynamically -->
                         <script>
-                            for (let i = 1950; i <= new Date().getFullYear(); i++) {
-                                let option = document.createElement('option');
-                                option.value = i;
-                                option.textContent = i;
-                                document.getElementById('dobYear').appendChild(option);
+                            const currentYear = new Date().getFullYear();
+                            for (let i = 1900; i <= currentYear; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
                             }
                         </script>
                     </select>
@@ -210,10 +180,12 @@
             <button type="submit" class="btn-submit">تسجيل الآن</button>
             <div class="error" id="errorMessage"></div>
         </form>
+        <div class="link-container">
+            <p>لديك حساب؟ <a href="third.html">تسجيل الدخول</a></p>
+        </div>
     </div>
 
     <script>
-        // حفظ البيانات في localStorage
         document.getElementById('registrationForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -225,37 +197,28 @@
             let email = document.getElementById('email').value;
             let password = document.getElementById('password').value;
             let confirmPassword = document.getElementById('confirmPassword').value;
-            let address = document.getElementById('address').value;
-            let dobDay = document.getElementById('dobDay').value;
-            let dobMonth = document.getElementById('dobMonth').value;
-            let dobYear = document.getElementById('dobYear').value;
-
-            if (!firstName || !middleName || !lastName || !fourthName || !phoneNumber || !email || !password || !confirmPassword || !address || !dobDay || !dobMonth || !dobYear) {
-                document.getElementById('errorMessage').textContent = "يرجى ملء جميع الحقول!";
-                return;
-            }
+            let day = document.getElementById('day').value;
+            let month = document.getElementById('month').value;
+            let year = document.getElementById('year').value;
 
             if (password !== confirmPassword) {
                 document.getElementById('errorMessage').textContent = "كلمة المرور غير متطابقة!";
                 return;
             }
 
-            // تخزين البيانات في localStorage
             let userData = {
-                firstName: firstName,
-                middleName: middleName,
-                lastName: lastName,
-                fourthName: fourthName,
-                phoneNumber: phoneNumber,
-                email: email,
-                password: password,
-                address: address,
-                dob: `${dobDay} ${dobMonth} ${dobYear}`
+                firstName,
+                middleName,
+                lastName,
+                fourthName,
+                phoneNumber,
+                email,
+                password,
+                dateOfBirth: `${day}-${month}-${year}`
             };
 
             localStorage.setItem('userData', JSON.stringify(userData));
-
-            document.getElementById('errorMessage').textContent = ""; // مسح رسالة الخطأ
+            window.location.href = 'fourth.html';
         });
     </script>
 </body>
