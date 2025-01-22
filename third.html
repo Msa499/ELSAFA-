@@ -7,169 +7,111 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f4f8;
+            background: linear-gradient(45deg, #f3ec78, #af4261, #4ca1af); /* خلفية متدرجة */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/diagmonds.png');
-            animation: backgroundMove 20s infinite linear;
         }
 
-        @keyframes backgroundMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .form-container {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .form-container:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #f39c12;
-            z-index: -1;
-            clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%);
+            background-color: rgba(0, 0, 0, 0.8); /* صندوق شفاف */
+            border-radius: 10px;
+            padding: 30px;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: #fff;
         }
 
         h1 {
             text-align: center;
-            color: #333;
-            font-size: 2rem;
+            font-size: 28px;
             margin-bottom: 20px;
-            font-family: 'Cairo', sans-serif;
         }
 
         label {
             display: block;
-            font-weight: bold;
-            margin-top: 15px;
-            color: #555;
+            margin: 10px 0 5px;
+            font-size: 16px;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
+            padding: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            border-color: #f39c12;
-            box-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+            border-radius: 5px;
+            font-size: 14px;
         }
 
         .btn-submit {
-            background-color: #f39c12;
+            background-color: #d72638; /* اللون الزهري الغامق */
             color: #fff;
             padding: 15px;
             width: 100%;
             border: none;
             border-radius: 30px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         .btn-submit:hover {
-            background-color: #e67e22;
+            background-color: #a21c2b;
         }
 
         .error {
-            color: #e74c3c;
+            color: #ff0000;
             font-size: 14px;
             text-align: center;
             margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .login-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #2980b9;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .login-link:hover {
-            color: #3498db;
-        }
-
-        .decorative-line {
-            border-bottom: 2px solid #f39c12;
-            margin-top: 15px;
-            margin-bottom: 20px;
-        }
-
-        .form-section {
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-
     <div class="form-container">
         <h1>تسجيل الدخول</h1>
         <form id="loginForm">
-            <div class="form-section">
-                <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
-            </div>
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
 
-            <div class="form-section">
-                <label for="password">كلمة المرور</label>
-                <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
-            </div>
+            <label for="password">كلمة المرور</label>
+            <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
 
             <div class="error" id="errorMessage"></div>
 
-            <button type="submit" class="btn-submit">تسجيل الدخول</button>
-
-            <div class="decorative-line"></div>
-            
-            <a href="third.html" class="login-link">لديك حساب؟</a>
+            <button type="submit" class="btn-submit">تسجيل الآن</button>
         </form>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
 
-            // بيانات التسجيل المتوقعة
-            const storedEmail = "test@example.com";
-            const storedPassword = "password123";
+            // استرجاع البيانات المسجلة من الملف الثاني
+            let userData = JSON.parse(localStorage.getItem('userData'));
 
-            if (email === storedEmail && password === storedPassword) {
-                window.location.href = 'fourth.html';
+            if (userData && email === userData.email && password === userData.password) {
+                // إذا كانت البيانات صحيحة، يتم الانتقال إلى الملف الرابع
+                window.location.href = "fourth.html";
             } else {
-                errorMessage.textContent = "لم يتم مطابقة البيانات!";
+                // إذا كانت البيانات غير صحيحة، تظهر رسالة خطأ
+                document.getElementById('errorMessage').textContent = "البيانات خاطئة، يرجى المحاولة مرة أخرى!";
             }
         });
     </script>
-
 </body>
 </html>
