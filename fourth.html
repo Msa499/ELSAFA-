@@ -3,213 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة المنتجات</title>
+    <title>الصفحة الرئيسية</title>
     <style>
         body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(to bottom right, #ff9a76, #ffc371);
-            margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .products-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            color: #000;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            text-align: center;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .add-to-cart {
+            background-color: #ff7e5f;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #feb47b;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .cart-icon {
+            background-color: #ff7e5f;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+        }
+
+        .cart-icon:hover {
+            background-color: #feb47b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">الصفحة الرئيسية</a>
+        <a href="sixth.html">حسابي</a>
+        <a href="tenth.html">الرسائل</a>
+        <div class="cart-icon" onclick="showCart()">🛒</div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="products-section">
+        <!-- Product Card Example -->
+        <div class="product-card">
+            <img src="product1.jpg" alt="منتج 1" width="100%">
+            <h3>منتج 1</h3>
+            <p>السعر: 100 جنيه</p>
+            <button class="add-to-cart" onclick="addToCart('منتج 1', 100)">إضافة إلى العربة</button>
+        </div>
+        <!-- Add more products here -->
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 جميع الحقوق محفوظة</p>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            alert("تم إضافة المنتج إلى العربة");
+        }
+
+        function showCart() {
+            if (cart.length > 0) {
+                let cartContent = cart.map(item => `${item.name} - ${item.price} جنيه`).join("\n");
+                alert("عربة التسوق: \n" + cartContent);
+            } else {
+                alert("العربة فارغة");
+            }
+        }
+    </script>
+</body>
+</html>
+<div class="add-product-form">
+    <label for="productImage">اختر صورة المنتج:</label>
+    <input type="file" id="productImage" accept="image/*">
+    <label for="productTitle">عنوان المنتج:</label>
+    <input type="text" id="productTitle" placeholder="أدخل عنوان المنتج">
+    <label for="productDescription">وصف المنتج:</label>
+    <textarea id="productDescription" placeholder="أدخل وصف المنتج"></textarea>
+    <label for="productPrice">السعر:</label>
+    <input type="number" id="productPrice" placeholder="أدخل سعر المنتج">
+    <label for="currency">العملة:</label>
+    <select id="currency">
+        <option value="EGP">جنيه مصري</option>
+        <option value="USD">دولار أمريكي</option>
+        <!-- Add more currencies -->
+    </select>
+    <label for="category">اختار فئة المنتج:</label>
+    <select id="category">
+        <option value="home-food">أكل بيتي</option>
+        <option value="baked-goods">مخبوزات</option>
+    </select>
+    <button onclick="submitProduct()">إضافة المنتج</button>
+</div>
+
+<script>
+    function submitProduct() {
+        const image = document.getElementById('productImage').files[0];
+        const title = document.getElementById('productTitle').value;
+        const description = document.getElementById('productDescription').value;
+        const price = document.getElementById('productPrice').value;
+        const currency = document.getElementById('currency').value;
+        const category = document.getElementById('category').value;
+
+        // Validate the inputs before adding
+        if (title && description && price && category) {
+            alert(`تم إضافة المنتج: ${title}`);
+            // Here you can add the product to your database or local storage
+        } else {
+            alert("من فضلك أكمل كافة البيانات");
+        }
+    }
+</script>
+body {
+    background: url('background-pattern.png');
+    background-size: cover;
+    animation: fadeInBackground 15s infinite alternate;
+}
+
+@keyframes fadeInBackground {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة إلى العربة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .product-details {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-details h3 {
+            color: #ff7e5f;
+        }
+
+        .product-details p {
+            color: #555;
+        }
+
+        .product-details .price {
+            font-size: 1.2em;
+            color: #ff7e5f;
+        }
+
+        .product-details button {
+            background-color: #feb47b;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product-details button:hover {
+            background-color: #ff7e5f;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-details">
+        <img src="product-image.jpg" alt="صورة المنتج">
+        <h3>اسم المنتج: كعكة الشوكولاتة</h3>
+        <p>وصف المنتج: كعكة لذيذة مع طبقات من الشوكولاتة المذابة.</p>
+        <p class="price">السعر: 50 جنيه</p>
+        <button id="addToCartBtn">إضافة إلى العربة</button>
+    </div>
+
+    <script>
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        addToCartBtn.addEventListener('click', function() {
+            // بيانات المنتج
+            const product = {
+                name: "كعكة الشوكولاتة",
+                description: "كعكة لذيذة مع طبقات من الشوكولاتة المذابة.",
+                price: 50,
+                image: "product-image.jpg"
+            };
+
+            // إضافة المنتج إلى العربة
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert("تم إضافة المنتج إلى العربة");
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحقق من البريد الإلكتروني</title>
+</head>
+<body>
+    <h1>التحقق من البريد الإلكتروني</h1>
+    <form id="loginForm">
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" id="email" placeholder="ادخل بريدك الإلكتروني" required>
+        <br>
+        <label for="password">كلمة المرور:</label>
+        <input type="password" id="password" placeholder="ادخل كلمة المرور" required>
+        <br>
+        <button type="submit">تسجيل الدخول</button>
+    </form>
+
+    <script>
+        const correctEmail = "frahone5@gmail.com";
+        const correctPassword = "123456789003m";
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email === correctEmail && password === correctPassword) {
+                window.location.href = "index.html";  // إذا كانت البيانات صحيحة، انتقل للصفحة الرئيسية
+            } else {
+                alert("البريد الإلكتروني أو كلمة المرور غير صحيحة");
+            }
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسابي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #333;
+        }
+
+        .account-header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .account-header h2 {
+            color: #ff7e5f;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .profile-details img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+        }
+
+        .profile-details p {
+            font-size: 16px;
+        }
+
+        .profile-details button {
+            background-color: #feb47b;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .profile-details button:hover {
+            background-color: #ff7e5f;
+        }
+    </style>
+</head>
+<body>
+    <div class="account-header">
+        <h2>أهلاً بك في حسابك</h2>
+    </div>
+
+    <div class="profile-details">
+        <img src="profile-pic.jpg" alt="الصورة الشخصية">
+        <p>البريد الإلكتروني: frahone5@gmail.com</p>
+        <p>عدد المنتجات المضافة: 3</p> <!-- سيتم تحديث هذا الرقم بناءً على المنتجات المضافة -->
+        <button onclick="window.location.href='tenth.html'">الرسائل</button>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرسائل</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .message-box {
+            margin: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            margin: 10px 0;
+        }
+
+        .message h3 {
+            color: #ff7e5f;
+        }
+
+        .message p {
+            color: #555;
+        }
+
+        .message button {
+            background-color: #feb47b;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .message button:hover {
+            background-color: #ff7e5f;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">رسائلك</h2>
+
+    <div class="message-box">
+        <div class="message">
+            <h3>رسالة من إدارة الموقع</h3>
+            <p>مرحبا بك في موقعنا! شكراً لاستخدامك خدماتنا.</p>
+            <button>تم</button>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة منتج</title>
+    <style>
+        /* Styles for the product form and button */
+    </style>
+</head>
+<body>
+    <h2>إضافة منتج جديد</h2>
+    <form id="addProductForm">
+        <label for="productTitle">عنوان المنتج:</label>
+        <input type="text" id="productTitle" required>
+        <br>
+        <label for="productDescription">وصف المنتج:</label>
+        <textarea id="productDescription" required></textarea>
+        <br>
+        <label for="productPrice">السعر:</label>
+        <input type="number" id="productPrice" required>
+        <br>
+        <label for="productCategory">الفئة:</label>
+        <select id="productCategory" required>
+            <option value="baked-goods">مخبوزات</option>
+            <option value="home-food">أكل بيتي</option>
+        </select>
+        <br>
+        <button type="submit">إضافة المنتج</button>
+    </form>
+
+    <h3>المنتجات المضافة:</h3>
+    <ul id="productList"></ul>
+
+    <script>
+        // Save product to LocalStorage
+        document.getElementById('addProductForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('productTitle').value;
+            const description = document.getElementById('productDescription').value;
+            const price = document.getElementById('productPrice').value;
+            const category = document.getElementById('productCategory').value;
+
+            const product = {
+                title,
+                description,
+                price,
+                category
+            };
+
+            let products = JSON.parse(localStorage.getItem('products')) || [];
+            products.push(product);
+            localStorage.setItem('products', JSON.stringify(products));
+            displayProducts();
+        });
+
+        // Display all products
+        function displayProducts() {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+            products.forEach(product => {
+                const li = document.createElement('li');
+                li.textContent = `${product.title} - ${product.price} جنيه - ${product.category}`;
+                productList.appendChild(li);
+            });
+        }
+
+        // Load products on page load
+        window.onload = displayProducts;
+    </script>
+</body>
+ 
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
         }
 
-        .container {
-            width: 80%;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1.5s ease-in-out;
-            position: relative;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #333;
-            text-align: center;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .plus-btn {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: #007bff;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease;
-        }
-
-        .plus-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .form-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .form-container {
-            background: white;
-            width: 90%;
-            max-width: 500px;
+        .login-container {
+            background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
         }
 
-        .form-container label {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .form-container input, .form-container textarea, .form-container select {
+        input[type="email"],
+        input[type="password"] {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
+            margin: 10px 0;
             border-radius: 5px;
-            font-size: 1rem;
+            border: 1px solid #ddd;
         }
 
-        .form-container .btn {
-            background-color: #ff6f61;
-            color: white;
-            padding: 10px 20px;
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            background-color: #ff7e5f;
+            color: #fff;
             border: none;
+            padding: 15px;
             border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .form-container .btn:hover {
-            background-color: #ff3d3d;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #555;
-            position: absolute;
-            top: 10px;
-            right: 10px;
             cursor: pointer;
         }
 
-        .sparkle {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: white;
-            border-radius: 50%;
-            animation: sparkle 3s infinite;
+        .submit-btn:hover {
+            background-color: #ff4c4c;
         }
-
-        @keyframes sparkle {
-            0% {
-                opacity: 0;
-                transform: translateY(0);
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(0);
-            }
-        }
-
-        .sparkle:nth-child(1) { left: 20%; top: 10%; animation-delay: 0.5s; }
-        .sparkle:nth-child(2) { left: 40%; top: 20%; animation-delay: 1s; }
-        .sparkle:nth-child(3) { left: 60%; top: 15%; animation-delay: 1.5s; }
-        .sparkle:nth-child(4) { left: 80%; top: 25%; animation-delay: 2s; }
-        .sparkle:nth-child(5) { left: 50%; top: 50%; animation-delay: 2.5s; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>مرحبا بك يا صانع الموقع</h1>
-        <div class="plus-btn" onclick="openForm()">+</div>
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+        <input type="password" id="password" placeholder="كلمة المرور" required>
+        <button class="submit-btn" onclick="validateLogin()">تسجيل الدخول</button>
+        <p class="error-message" id="error-message"></p>
     </div>
-
-    <!-- Form Popup -->
-    <div class="form-popup" id="formPopup">
-        <div class="form-container">
-            <button class="close-btn" onclick="closeForm()">×</button>
-            <h2>إضافة منتج جديد</h2>
-            <label for="image">إضافة صورة:</label>
-            <input type="file" id="image" accept="image/*">
-            <label for="title">عنوان المنتج:</label>
-            <input type="text" id="title" placeholder="أدخل عنوان المنتج">
-            <label for="description">وصف المنتج (اختياري):</label>
-            <textarea id="description" placeholder="أدخل وصف المنتج"></textarea>
-            <label for="price">السعر:</label>
-            <input type="number" id="price" placeholder="أدخل سعر المنتج">
-            <label for="currency">اختر العملة:</label>
-            <select id="currency">
-                <option>جنيه مصري</option>
-                <option>دولار أمريكي</option>
-                <option>ريال سعودي</option>
-                <!-- Add more currencies as needed -->
-            </select>
-            <label for="category">الفئة:</label>
-            <select id="category">
-                <option>مخبوزات</option>
-                <option>أكلات بيتي</option>
-            </select>
-            <button class="btn" onclick="addProduct()">إرسال</button>
-        </div>
-    </div>
-
-    <!-- Sparkles for magic effect -->
-    <div class="sparkle"></div>
-    <div class="sparkle"></div>
-    <div class="sparkle"></div>
-    <div class="sparkle"></div>
-    <div class="sparkle"></div>
 
     <script>
-        function openForm() {
-            document.getElementById('formPopup').style.display = 'flex';
-        }
+        const storedEmail = "frahone5@gmail.com"; // البريد الإلكتروني المخزن
+        const storedPassword = "123456789003m"; // كلمة المرور المخزنة
 
-        function closeForm() {
-            document.getElementById('formPopup').style.display = 'none';
-        }
+        // التحقق من بيانات الدخول
+        function validateLogin() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
 
-        function addProduct() {
-            alert("تم إضافة المنتج بنجاح!");
-            closeForm();
+            // تحقق من صحة البريد الإلكتروني وكلمة المرور
+            if (email === storedEmail && password === storedPassword) {
+                errorMessage.textContent = ""; // مسح رسالة الخطأ
+                alert("تم تسجيل الدخول بنجاح");
+                window.location.href = "fourth.html"; // الانتقال إلى صفحة المنتجات
+            } else {
+                errorMessage.textContent = "البريد الإلكتروني أو كلمة المرور غير صحيحة";
+            }
         }
     </script>
-
 </body>
 </html>
