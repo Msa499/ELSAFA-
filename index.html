@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مخبوزات الصفا</title>
     <style>
+        /* استيراد خط من Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -15,7 +18,7 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
-            color: #fff;
+            color: #5a3e36; /* لون بني داكن */
             overflow: hidden;
             background-color: #f4e9d8; /* لون خلفية احتياطي */
         }
@@ -44,12 +47,25 @@
         }
 
         .title {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
             font-weight: bold;
             letter-spacing: 2px;
             color: #5a3e36; /* لون بني داكن */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #8b5e3c, #5a3e36);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px rgba(139, 94, 60, 0.8);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(139, 94, 60, 1);
+            }
         }
 
         .icons {
@@ -85,20 +101,39 @@
             background-color: #ffcc80; /* لون برتقالي فاتح */
         }
 
-        /* تأثيرات إضافية */
+        /* أيقونات سوداء */
         .icon:nth-child(1) img {
-            background-color: #3b5998; /* لون فيسبوك */
+            background-color: #000; /* لون أسود */
         }
 
         .icon:nth-child(3) img {
-            background-color: #25d366; /* لون واتساب */
+            background-color: #000; /* لون أسود */
+        }
+
+        /* زر تسجيل الدخول */
+        .login-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #fff;
+            background: linear-gradient(45deg, #8b5e3c, #5a3e36);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
     <div class="background"></div>
     <div class="logo">
-        <img src="uploaded-file-path" alt="شعار مخبوزات الصفا">
+        <img src="1000156402.png" alt="شعار مخبوزات الصفا">
     </div>
 
     <div class="title">مرحبًا في مخبوزات الصفا</div>
@@ -106,7 +141,7 @@
     <div class="icons">
         <!-- أيقونة الفيسبوك -->
         <a class="icon" href="https://www.facebook.com/share/1WX9wSSdQd/" target="_blank">
-            <img src="https://img.icons8.com/color/48/facebook-new.png" alt="فيسبوك">
+            <img src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png" alt="فيسبوك">
         </a>
 
         <!-- أيقونة القائمة -->
@@ -116,8 +151,11 @@
 
         <!-- أيقونة الواتساب -->
         <a class="icon" href="https://wa.me/201284698710" target="_blank">
-            <img src="https://img.icons8.com/color/48/whatsapp.png" alt="واتساب">
+            <img src="https://img.icons8.com/ios-filled/50/000000/whatsapp.png" alt="واتساب">
         </a>
     </div>
+
+    <!-- زر تسجيل الدخول -->
+    <button class="login-button" onclick="window.location.href='second.html'">تسجيل الدخول</button>
 </body>
 </html>
