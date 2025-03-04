@@ -18,7 +18,7 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
-            color: #5a3e36; /* لون بني داكن */
+            color: #fff; /* لون النص أبيض */
             overflow: hidden;
             background-color: #f4e9d8; /* لون خلفية احتياطي */
         }
@@ -51,9 +51,7 @@
             margin-bottom: 20px;
             font-weight: bold;
             letter-spacing: 2px;
-            color: #5a3e36; /* لون بني داكن */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(45deg, #8b5e3c, #5a3e36);
+            background: linear-gradient(45deg, #fff, #ffeb3b); /* تدرج من الأبيض إلى الأصفر */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 2s infinite alternate;
@@ -61,10 +59,10 @@
 
         @keyframes glow {
             0% {
-                text-shadow: 0 0 10px rgba(139, 94, 60, 0.8);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
             }
             100% {
-                text-shadow: 0 0 20px rgba(139, 94, 60, 1);
+                text-shadow: 0 0 20px rgba(255, 235, 59, 1);
             }
         }
 
@@ -96,18 +94,14 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* تعديل خاص لأيقونة القائمة */
-        .menu-icon img {
-            background-color: #ffcc80; /* لون برتقالي فاتح */
-        }
-
-        /* أيقونات سوداء */
+        /* أيقونة الفيسبوك */
         .icon:nth-child(1) img {
-            background-color: #000; /* لون أسود */
+            background-color: #3b5998; /* لون فيسبوك */
         }
 
+        /* أيقونة الواتساب */
         .icon:nth-child(3) img {
-            background-color: #000; /* لون أسود */
+            background-color: #25d366; /* لون واتساب */
         }
 
         /* زر تسجيل الدخول */
@@ -116,17 +110,36 @@
             padding: 15px 30px;
             font-size: 1.2rem;
             color: #fff;
-            background: linear-gradient(45deg, #8b5e3c, #5a3e36);
+            background: linear-gradient(45deg, #ff9800, #ffeb3b); /* تدرج لوني برتقالي-أصفر */
             border: none;
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+            border-radius: 50%;
         }
 
         .login-button:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
         }
     </style>
 </head>
@@ -141,7 +154,7 @@
     <div class="icons">
         <!-- أيقونة الفيسبوك -->
         <a class="icon" href="https://www.facebook.com/share/1WX9wSSdQd/" target="_blank">
-            <img src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png" alt="فيسبوك">
+            <img src="https://img.icons8.com/color/48/facebook-new.png" alt="فيسبوك">
         </a>
 
         <!-- أيقونة القائمة -->
@@ -151,7 +164,7 @@
 
         <!-- أيقونة الواتساب -->
         <a class="icon" href="https://wa.me/201284698710" target="_blank">
-            <img src="https://img.icons8.com/ios-filled/50/000000/whatsapp.png" alt="واتساب">
+            <img src="https://img.icons8.com/color/48/whatsapp.png" alt="واتساب">
         </a>
     </div>
 
