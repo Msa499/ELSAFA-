@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - مخبوزات الصفا</title>
+    <style>
+        /* استيراد خط من Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* تدرج بنفسجي وأزرق */
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .login-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #ffeb3b; /* لون أصفر */
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .input-group .eye-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .input-group .eye-icon:hover {
+            color: #ffeb3b;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            color: #fff;
+            background: linear-gradient(45deg, #ff9800, #ffeb3b);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .links a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .links a:hover {
+            color: #ff9800;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .remember-me input {
+            margin-left: 10px;
+        }
+
+        /* رسائل الخطأ */
+        .error-message {
+            color: #ff4d4d; /* لون أحمر */
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* تأثيرات الخلفية */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .background-animation .square {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg) translateX(0);
+            }
+            100% {
+                transform: rotate(360deg) translateX(200px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="square" style="top: 10%; left: 20%;"></div>
+        <div class="square" style="top: 30%; left: 70%;"></div>
+        <div class="square" style="top: 60%; left: 40%;"></div>
+    </div>
+
+    <div class="login-container">
+        <h1>تسجيل الدخول</h1>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="name">الاسم</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error-message" id="nameError">يرجى إدخال الاسم</div>
+            </div>
+            <div class="input-group">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="emailError">يرجى إدخال بريد إلكتروني صحيح</div>
+            </div>
+            <div class="input-group">
+                <label for="phone">رقم الهاتف (مصري)</label>
+                <input type="tel" id="phone" name="phone" pattern="01[0-9]{9}" required>
+                <div class="error-message" id="phoneError">يرجى إدخال رقم هاتف مصري صحيح</div>
+            </div>
+            <div class="input-group">
+                <label for="address">العنوان</label>
+                <input type="text" id="address" name="address" required>
+                <div class="error-message" id="addressError">يرجى إدخال العنوان</div>
+            </div>
+            <div class="input-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" name="password" required>
+                <span class="eye-icon" onclick="togglePassword()">👁️</span>
+                <div class="error-message" id="passwordError">يرجى إدخال كلمة المرور</div>
+            </div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">حفظ البيانات</label>
+            </div>
+            <button type="submit" class="login-button">تسجيل الدخول</button>
+        </form>
+        <div class="links">
+            <a href="third.html">لديك حساب؟</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const password = document.getElementById('password').value;
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const phoneError = document.getElementById('phoneError');
+            const addressError = document.getElementById('addressError');
+            const passwordError = document.getElementById('passwordError');
+
+            // إعادة تعيين رسائل الخطأ
+            nameError.style.display = 'none';
+            emailError.style.display = 'none';
+            phoneError.style.display = 'none';
+            addressError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            if (!name) {
+                nameError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!email || !validateEmail(email)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!phone || !validatePhone(phone)) {
+                phoneError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!address) {
+                addressError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!password) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('تم تسجيل الدخول بنجاح!');
+                window.location.href = 'fourth.html';
+            }
+        }
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function validatePhone(phone) {
+            const regex = /^01[0-9]{9}$/;
+            return regex.test(phone);
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', validateForm);
+    </script>
+</body>
+</html>
